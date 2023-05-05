@@ -1,185 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Tic Tac Toe Game</title>
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:600&display=swap" rel="stylesheet">
-	 <link rel="icon" href="images/logo-ccs-60.png" type="image/x-icon" />
-	<script src="service-worker.js"></script>
-	<link rel="manifest" href="manifest.json">
-	<style type="text/css">
-
-		.container {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			align-items: center;
-			width: 400px; /* added width */
-			margin: 0 auto; /* center horizontally */
-		}
-		.box {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			border: 2px solid #f4f4f4;
-			width: 100px; /* adjusted width */
-			height: 100px; /* adjusted height */
-			font-size: 80px;
-			cursor: pointer;
-			box-sizing: border-box;
-			background-color: #f9f9f9;
-			margin: 5px;
-			color: #888;
-			text-align: center;
-			font-weight: bold;
-			font-family: 'Montserrat', sans-serif;
-			transition: all 0.3s ease;
-		}
-		.box:hover {
-			background-color: #e6e6e6;
-			color: #333;
-		}
-		.box:active {
-			background-color: #ccc;
-		}
-		.x {
-			background-color: #99d8d0;
-			color: #fff;
-		}
-		.o {
-			background-color: #f7cac9;
-			color: #fff;
-		}
-		.turn {
-			font-size: 40px;
-			font-weight: bold;
-			margin-bottom: 20px;
-			text-align: center;
-			color: #333;
-			font-family: 'Montserrat', sans-serif;
-		}
-		.result {
-			font-size: 40px;
-			font-weight: bold;
-			margin-bottom: 20px;
-			text-align: center;
-			color: #333;
-			font-family: 'Montserrat', sans-serif;
-		}
-		.restart-btn {
-			display: inline-block;
-			background-color: #99d8d0;
-			color: #fff;
-			padding: 10px 20px;
-			border: none;
-			border-radius: 5px;
-			font-size: 20px;
-			font-weight: bold;
-			cursor: pointer;
-			transition: all 0.3s ease;
-			text-decoration: none;
-			margin-top: 20px;
-			font-family: 'Montserrat', sans-serif;
-		}
-		.restart-btn:hover {
-			background-color: #77c1b7;
-		}
-		.restart-btn:active {
-			background-color: #66a8a0;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <title>MyPortfolio</title>
 </head>
 <body>
-	<div class="turn">Player 1's Turn (X)</div>
-	<div class="container">
-		<div class="box"></div>
-		<div class="box"></div>
-		<div class="box"></div>
-		<div class="box"></div>
-		<div class="box"></div>
-		<div class="box"></div>
-		<div class="box"></div>
-		<div class="box"></div>
-		<div class="box"></div>
-	</div>
-	<div class="result"></div>
-	<center><a href="#" class="restart-btn">Restart Game</a></center>
-	<script type="text/javascript">
-		var boxes = document.querySelectorAll('.box');
-		var turn = document.querySelector('.turn');
-		var result = document.querySelector('.result');
-		var restartBtn = document.querySelector ('.restart-btn');
-        var currentPlayer = "X";
-        var moves = 0;
-        var gameover = false;
-        var winningCombinations = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
-        ];
-   	// Add click event listener to each box
-	for (var i = 0; i < boxes.length; i++) {
-		boxes[i].addEventListener('click', function() {
-			if (!gameover && !this.classList.contains('x') && !this.classList.contains('o')) {
-				this.classList.add(currentPlayer.toLowerCase());
-				this.innerHTML = currentPlayer;
-				moves++;
-				checkWinner();
-				if (!gameover) {
-					switchPlayer();
-				}
-			}
-		});
-	}
-
-	// Switch player
-	function switchPlayer() {
-		if (currentPlayer === "X") {
-			currentPlayer = "O";
-			turn.innerHTML = "Player 2's Turn (O)";
-		} else {
-			currentPlayer = "X";
-			turn.innerHTML = "Player 1's Turn (X)";
-		}
-	}
-
-	// Check for a winner
-	function checkWinner() {
-		for (var i = 0; i < winningCombinations.length; i++) {
-			var a = boxes[winningCombinations[i][0]];
-			var b = boxes[winningCombinations[i][1]];
-			var c = boxes[winningCombinations[i][2]];
-			if (a.classList.contains(currentPlayer.toLowerCase()) && b.classList.contains(currentPlayer.toLowerCase()) && c.classList.contains(currentPlayer.toLowerCase())) {
-				result.innerHTML = "Player " + currentPlayer + " Wins!";
-				result.style.color = "#99d8d0";
-				gameover = true;
-				break;
-			} else if (moves === 9) {
-				result.innerHTML = "It's a Tie!";
-				result.style.color = "#f7cac9";
-				gameover = true;
-				break;
-			}
-		}
-	}
-
-	// Restart game
-	restartBtn.addEventListener('click', function() {
-		for (var i = 0; i < boxes.length; i++) {
-			boxes[i].classList.remove('x');
-			boxes[i].classList.remove('o');
-			boxes[i].innerHTML = "";
-		}
-		currentPlayer = "X";
-		moves = 0;
-		gameover = false;
-		result.innerHTML = "";
-		turn.innerHTML = "Player 1's Turn (X)";
-	});
-</script>
-    </body>
-   </html>
+    <header>
+        <h1>MyPortfolio</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sports">Sports / Hobbies</a></li>
+                <li><a href="#movies">Favourite Movies & Music</a></li>
+                <li><a href="#languages">Favourite Programming Languages</a></li>
+                <li><a href="#contacts">Contacts</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <h2>Home</h2>
+            <p>I am Ren A Averion, 20yrs old and currently taking BSIT major in Website Managment and Application Development. <br>
+               I know several programming languages such as html/css, java, c# and phyton.
+            </p>
+        </section>
+        <section id="sports">
+            <h2>Sports / Hobbies</h2>
+            <p>The sports I play just for fun is badminton and a little bit of basketball. While on the other hand I also play <br>
+               e-games and i prefer fighting genres such as tekken and JJBA:ASBR. <br>
+               Aside from gaming I do also love to draw, paint , watch anime and movies sometimes and read mangas.</p>
+        </section>
+        <section id="movies">
+            <h2>Favourite Movies & Music</h2>
+        <ul>
+            <strong> My favourite movies: </strong>
+               <li>Interstellar </li> 
+               <li>Mugen Train</li>
+        </ul>
+        <ul>
+            <strong> My favourite musics: </strong>
+            <li>Pluto Projector (Rex Orange County)</li>
+            <li>Space Song (Beach House)</li>
+            <li>Chamber of Reflections (Mac DeMarco)</li>
+            <li>Young (Vacations)</li>
+            <li>I Cant Handle Change (Roar)</li>
+            <li>Verbatim (Mother Mother)</li>
+            <li>Test and Recognize (Seekae)</li>
+            <li>Verbatim (Mother Mother)</li>
+            <li>Solitude (M83)</li>
+        </ul>
+        </section>
+        <section id="languages">
+            <h2>Favourite Programming Languages</h2>
+            <ol>
+                <li>mySQL</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>PHP</li>
+            </ol>
+        </section>
+        <section id="contacts">
+            <h2>Contacts</h2>
+            <p>Mobile Number: 09556701358 <br>
+               Facebook: Ren Averion <br>
+               Email: 0320-0642@lsppu.edu.ph
+            </p>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
